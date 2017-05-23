@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="./bower_components/crypto-js/crypto-js.js"></script>
+	<script type="text/javascript">
+	   // Encrypt 
+		var ciphertext = CryptoJS.AES.encrypt('my message', 'secret key 123');
+		console.log(ciphertext.toString());
+		// Decrypt 
+		var bytes  = CryptoJS.AES.decrypt(ciphertext.toString(), 'secret key 123');
+		var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+		 
+		console.log(plaintext);
+
+		function  encrypt(mensaje){
+		  var salt = CryptoJS.lib.WordArray.random(128/8);
+		  var iv = CryptoJS.lib.WordArray.random(128/8);
+		  var key128Bits = CryptoJS.PBKDF2("Secret Passphrase", salt, { keySize: 128/32 }); 
+		  var key128Bits100Iterations = CryptoJS.PBKDF2("Secret Passphrase", salt, { keySize: 128/32, iterations: 100 });
+		  var encrypted = CryptoJS.AES.encrypt(mensaje, key128Bits100Iterations, { iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7  });
+		  return {
+		  	"encrypt": encrypted.toString(),
+		  	"salt" : salt.toString(),
+		  	"iv" : iv.toString()
+		  }
+		}
+		console.log(encrypt("paen"));
+		console.log(encrypt("mayo_2017"));
+	</script> 
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "pidcrypt",
+  "version": "1.0.0",
+  "description": "encriptando con pidcrypt",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "RIAP",
+  "license": "MIT",
+  "dependencies": {}
+}
